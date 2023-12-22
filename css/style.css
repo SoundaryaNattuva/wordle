@@ -37,6 +37,16 @@ body {
     justify-content: center;
 }
 
+.row0Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .row1Tile {
     border: solid 1px white;
@@ -83,17 +93,6 @@ body {
 }
 
 .row5Tile {
-    border: solid 1px white;
-    background-color: black;
-    color: white;
-    height: 50px;
-    width: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.row6Tile {
     border: solid 1px white;
     background-color: black;
     color: white;
@@ -155,11 +154,19 @@ body {
 }
 
 #delete {
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90px;
     height: 58px;
 }
 
 #enter{
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90px;
     height: 58px;
 }
