@@ -1,0 +1,165 @@
+body {
+    background-color: pink;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.GameBoard {
+    border: solid 1px black;
+    padding: 5px;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin: auto;
+}
+
+.BoardRow {
+    border: solid 1px black;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.row1Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row2Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row3Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row4Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row5Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row6Tile {
+    border: solid 1px white;
+    background-color: black;
+    color: white;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    border: solid 1px blue;
+    /* display: block;
+    align-items: center;
+    justify-content: center;
+    margin: auto; */
+}
+
+.header {
+    font-size: 30px;
+    border: solid 1px black;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+
+.KeyBoard {
+    border: solid 1px black;
+    padding: 20px 20px;
+    width: 650px;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 30px;
+}
+
+.KBR {
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 60px;
+    width: 580px;
+    margin: 10px;
+}
+
+.key {
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 58px;
+}
+
+#delete {
+    width: 90px;
+    height: 58px;
+}
+
+#enter{
+    width: 90px;
+    height: 58px;
+}
