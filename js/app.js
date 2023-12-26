@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-
+import {computerChoice} from "./word-list.js"
 
 /*-------------------------------- Variables --------------------------------*/
 let activeRow = 0
@@ -15,55 +15,55 @@ const tileListR3 = document.querySelectorAll('.row3Tile')
 const tileListR4 = document.querySelectorAll('.row4Tile') 
 const tileListR5 = document.querySelectorAll('.row5Tile') 
 
+
 const deleteKey = document.querySelector('#delete')
 const enterKey = document.querySelector('#enter')
 
+let l = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
-    key.addEventListener('click',letterClick)
+    key.addEventListener('click',addLetter)
 })
 
 deleteKey.addEventListener("click", deleteLetter)
-
+enterKey.addEventListener("click", playerGuess)
 
 /*-------------------------------- Functions --------------------------------*/
 
-
-
-function letterClick(evt){
+function addLetter(evt){
+    console.log(activeCol)
     let letterChosen = evt.target.textContent
-    updateBoardTile(letterChosen)
-}
-
-function updateBoardTile(letterChosen){
-    if (activeRow === 0){
-        checkRow(letterChosen, tileListR0)
-    } else if (activeRow === 1){
-        checkRow(letterChosen, tileListR1)
-    } else if (activeRow === 2){
-        checkRow(letterChosen, tileListR2)
-    } else if (activeRow === 3){
-        checkRow(letterChosen, tileListR3)
-    } else if (activeRow === 4){
-        checkRow(letterChosen, tileListR4)
-    } else if (activeRow === 5){
-        checkRow(letterChosen, tileListR5)
-    }
-}
-
-function checkRow(letterChosen, tileListRow){
-    for (let i=0; i < tileListRow.length; i++){
-        if(tileListRow[i].textContent === ''){
-            tileListRow[i].textContent = letterChosen
+    let list = l[activeRow]
+    for (let i=0; i < list.length; i++){
+        if(list[i].textContent === ''){
+            list[i].textContent = letterChosen
             activeCol += 1
             return
-        } else if (tileListRow[i].textContent != ''){
+        } else if (list[i].textContent != ''){
             continue
-        } 
+        }
     }
 }
+
 
 function deleteLetter(){
     document.querySelector(`#R${activeRow}C${activeCol-1}`).textContent = ''
-    activeCol -= 1
+    if (activeCol <= 0){
+    }   else {activeCol -= 1}
+console.log(activeCol)
+}
+
+
+// take the letters in each tile and add it to an object
+function playerGuess(){
+    let playerGuessList = []
+    l[activeRow].forEach((letter) => playerGuessList.push(letter.textContent))
+    console.log(playerGuessList)
+}
+
+let compWordList = computerChoice()
+
+
+function compareWords(compWord){
+    console.log(compWordList)
 }
