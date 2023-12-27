@@ -56,14 +56,29 @@ console.log(activeCol)
 
 // take the letters in each tile and add it to an object
 function playerGuess(){
-    let playerGuessList = []
-    l[activeRow].forEach((letter) => playerGuessList.push(letter.textContent))
-    console.log(playerGuessList)
+    let letterList = []
+    l[activeRow].forEach((letter) => letterList.push(letter.textContent))
+    compareWords(letterList)
 }
 
-let compWordList = computerChoice()
+// let compWordList = computerChoice()
 
+let compLetterList = ['a', 'p', 'p', 'l', 'e']
 
-function compareWords(compWord){
-    console.log(compWordList)
+function compareWords(playerLetterList){
+    for (let i=0; i < 5; i++){
+        if (playerLetterList [i] === compLetterList[i]){
+            console.log("match")
+        } else {
+            console.log("no-match")
+         }
+    }
 }
+
+
+
+// function comparisonGameBoard = myGuessEle.forEach(letterGuess){
+//     for (let i=0; i < 5 ; i++){
+//       if letterGuess === letterDict[i]{
+//           ** keyboard color green & board color green
+//       } else {return}
