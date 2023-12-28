@@ -1,16 +1,40 @@
 body {
-    /* background-image: url("../css/space1.png"); */
+    background-image: url("../css/space2.jpg");
+    background-image-opacity: 0.3;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: gray;
+    background-color: #04395e;
+}
+
+.navigationBar {
+    border: solid 1px blue;
+    width: 100%;
+    margin-top: 0px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 64px;
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    color: white;
 }
 
 .GameBoard {
     border: solid 1px black;
     padding: 5px;
     width: 300px;
+    height: 400px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -21,7 +45,7 @@ body {
 
 .BoardRow {
     border: solid 1px black;
-    height: 55px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,9 +55,8 @@ body {
 .tile {
     border: solid 1px white;
     background-color: black;
-    color: white;
-    height: 50px;
-    width: 50px;
+    height: 52px;
+    width: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,8 +66,9 @@ body {
     font-family: 'Poiret One', sans-serif;
     font-family: 'Silkscreen', sans-serif;
     font-family: 'Yanone Kaffeesatz', sans-serif;
-    font-size: 24px;
-    color: white;
+    font-size: 32px;
+    /* -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: black; */
     border: solid 1px white;
     background-color: #031d44;
     color: white;
@@ -53,9 +77,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    margin: 4px 2px;
 }
 
 .row1Tile {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 32px;
     border: solid 1px white;
     background-color: #031d44;
     color: white;
@@ -64,20 +94,32 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    margin: 4px 2px;
 }
 
 .row2Tile {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 24px;
     border: solid 1px white;
     background-color: #031d44;
-    color: white;
+    color:white;
     height: 50px;
     width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    margin: 4px 2px;
 }
 
 .row3Tile {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 32px;
     border: solid 1px white;
     background-color: #031d44;
     color: white;
@@ -86,9 +128,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    margin: 4px 2px;
 }
 
 .row4Tile {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 32px;
     border: solid 1px white;
     background-color: #031d44;
     color: white;
@@ -97,9 +145,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    margin: 4px 2px;
 }
 
 .row5Tile {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 32px;
     border: solid 1px white;
     background-color: #031d44;
     color: white;
@@ -108,26 +162,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+    margin: 4px 2px;
 }
-
-.heading {
-    border: solid 1px blue;
-    /* display: block;
-    align-items: center;
-    justify-content: center;
-    margin: auto; */
-}
-
-.header {
-    font-size: 30px;
-    border: solid 1px black;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-}
-
 
 .KeyBoard {
     border: solid 1px black;
@@ -143,13 +180,12 @@ body {
 
 .KBR {
     border: solid 1px white;
-    background-color: black;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     height: 60px;
     width: 580px;
-    margin: 10px;
+    margin: 8px;
 }
 
 .key {
@@ -158,12 +194,14 @@ body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 32px;
     color: white;
+    background-color: #031d44;
     border: solid 1px white;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 45px;
     height: 58px;
+    border-radius: 10px;
 }
 
 #delete {
@@ -172,12 +210,14 @@ body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 24px;
     color: white;
-    border: solid 1px black;
+    border: solid 1px white;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 90px;
     height: 58px;
+    border-radius: 10px;
+    background-color: #c36b8f;
 }
 
 #enter{
@@ -186,10 +226,12 @@ body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 24px;
     color: white;
-    border: solid 1px black;
+    border: solid 1px white;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 90px;
     height: 58px;
+    border-radius: 10px;
+    background-color: #c36b8f;
 }
