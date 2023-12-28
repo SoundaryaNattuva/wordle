@@ -1,9 +1,10 @@
 body {
-    background-color: pink;
+    /* background-image: url("../css/space1.png"); */
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: gray;
 }
 
 .GameBoard {
@@ -39,8 +40,13 @@ body {
 }
 
 .row0Tile {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 24px;
+    color: white;
     border: solid 1px white;
-    background-color: black;
+    background-color: #031d44;
     color: white;
     height: 50px;
     width: 50px;
@@ -51,7 +57,7 @@ body {
 
 .row1Tile {
     border: solid 1px white;
-    background-color: black;
+    background-color: #031d44;
     color: white;
     height: 50px;
     width: 50px;
@@ -62,7 +68,7 @@ body {
 
 .row2Tile {
     border: solid 1px white;
-    background-color: black;
+    background-color: #031d44;
     color: white;
     height: 50px;
     width: 50px;
@@ -73,7 +79,7 @@ body {
 
 .row3Tile {
     border: solid 1px white;
-    background-color: black;
+    background-color: #031d44;
     color: white;
     height: 50px;
     width: 50px;
@@ -84,7 +90,7 @@ body {
 
 .row4Tile {
     border: solid 1px white;
-    background-color: black;
+    background-color: #031d44;
     color: white;
     height: 50px;
     width: 50px;
@@ -95,7 +101,7 @@ body {
 
 .row5Tile {
     border: solid 1px white;
-    background-color: black;
+    background-color: #031d44;
     color: white;
     height: 50px;
     width: 50px;
@@ -136,7 +142,8 @@ body {
 }
 
 .KBR {
-    border: solid 1px black;
+    border: solid 1px white;
+    background-color: black;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -146,7 +153,12 @@ body {
 }
 
 .key {
-    border: solid 1px black;
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 32px;
+    color: white;
+    border: solid 1px white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,6 +167,11 @@ body {
 }
 
 #delete {
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 24px;
+    color: white;
     border: solid 1px black;
     display: flex;
     align-items: center;
@@ -164,6 +181,11 @@ body {
 }
 
 #enter{
+    font-family: 'Poiret One', sans-serif;
+    font-family: 'Silkscreen', sans-serif;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 24px;
+    color: white;
     border: solid 1px black;
     display: flex;
     align-items: center;

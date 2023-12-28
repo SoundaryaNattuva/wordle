@@ -32,6 +32,9 @@ enterKey.addEventListener("click", compareWords)
 
 function addLetter(evt){
     console.log(activeCol)
+    if (activeRow >= 6){
+    endGame() //need to exit out of function. Return doesn't do that
+    }
     let letterChosen = evt.target.textContent
     let list = l[activeRow]
     for (let i=0; i < list.length; i++){
@@ -53,23 +56,18 @@ function deleteLetter(){
 console.log(activeCol)
 }
 
-
-// take the letters in each tile and add it to an object
-// function playerGuess(){
-//     let letterList = []
-//     l[activeRow].forEach((letter) => letterList.push(letter.textContent))
-//     compareWords(letterList)
-// }
-
 // let compWordList = computerChoice()
 
 function rowComplete(){
+    if (activeRow >= 6){
+        return
+    }
     let row = l[activeRow]
     console.log(row[1])
     for (let i=0; i < 5; i++){
         if (row[i].textContent === ''){
             document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
-            console.log("not shaking")
+            console.log("not shaking", activeRow)
             return false
         }
     }
@@ -80,29 +78,46 @@ function compareWords(){
     if (rowComplete() === false){
         return
     }
-    let compLetterList = ['a', 'p', 'p', 'l', 'e']
+    if (activeRow >= 6){
+        return
+    }
+    let compLetterList = ['A', 'P', 'P', 'L', 'E']
     let letterList = []
     l[activeRow].forEach((letter) => letterList.push(letter.textContent))
     for (let i=0; i < 5; i++){
-        if (letterList [i] === compLetterList[i]){
+        console.log(letterList[i], compLetterList[i])
+        if (letterList[i] === compLetterList[i]){
             console.log("match", letterList[i])
-            document.querySelector(`#R${activeRow}C${i}`).style.backgroundColor = "#29a329"
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#29a329"
-        } else if (letterList [i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
-            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#ffdb4d"
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#ffdb4d"
-        } else if (letterList [i] !== compLetterList[i] && compLetterList.includes(letterList[i]) === false) {
-            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#999999"
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#999999"
+            document.querySelector(`#R${activeRow}C${i}`).style.backgroundColor = "#70a288"
+            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#70a288"
+        } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
+            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#dab785"
+            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#dab785"
+        } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) === false) {
+            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "gray"
+            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
         }
     }
-activeRow += 1
-activeCol = 0
-console.log(`row: ${activeRow}, column: ${activeCol}`)
+    if (compLetterList.join('') === letterList.join('')){
+        console.log("you won!")
+        endGame()
+        return
+    }
+    activeRow += 1
+    activeCol = 0
+    console.log(`row: ${activeRow}, column: ${activeCol}`)
+    checkGameOver()
 }
 
-// function comparisonGameBoard = myGuessEle.forEach(letterGuess){
-//     for (let i=0; i < 5 ; i++){
-//       if letterGuess === letterDict[i]{
-//           ** keyboard color green & board color green
-//       } else {return}
+function checkGameOver(){
+    if (activeRow >=6){
+        // CSS - inset game ended
+        console.log("end")
+    }
+}
+
+function endGame(){
+    // activeRow = null
+    // activeCol = null
+
+}
