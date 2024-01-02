@@ -89,15 +89,19 @@ function compareWords(){
         if (letterList[i] === compLetterList[i]){
             console.log("match", letterList[i])
             document.querySelector(`#R${activeRow}C${i}`).style.backgroundColor = "#40916c"
+            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
             document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
+            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#a68500"
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) &&             document.querySelector(`#${letterList[i]}`).style.backgroundColor === "#40916c") {
             document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
+            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) === false) {
             document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "gray"
+            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
         }
     }
