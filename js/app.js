@@ -56,7 +56,7 @@ function deleteLetter(){
 console.log(activeCol)
 }
 
-// let compWordList = computerChoice()
+// let compLetterList = computerChoice()
 
 function rowComplete(){
     if (activeRow >= 6){
@@ -93,6 +93,9 @@ function compareWords(){
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
             document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#a68500"
+        } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) &&             document.querySelector(`#${letterList[i]}`).style.backgroundColor === "#40916c") {
+            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
+            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) === false) {
             document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "gray"
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
