@@ -26,7 +26,7 @@ keysList.forEach((key) => {
 })
 
 deleteKey.addEventListener("click", deleteLetter)
-enterKey.addEventListener("click", compareWords)
+enterKey.addEventListener("click", submitKey)
 
 /*-------------------------------- Functions --------------------------------*/
 function endGame(){
@@ -42,7 +42,9 @@ function endGame(){
 
 function addLetter(evt){
     let letterChosen = evt.target.textContent
-    if (activeCol >= 5){
+    if (activeRow === 6){
+        endGame()
+    } else if (activeCol >= 5){
         document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
         return
     } else if (activeCol < 5){
@@ -68,54 +70,39 @@ function deleteLetter(){
     }
 }
 
-// function addLetter(evt){
-//     console.log("active col is :" + activeCol + "\n active Row is: " + activeRow)
-//     let letterChosen = evt.target.textContent
-//     let list = l[activeRow]
-//     if (activeRow >= 6){
-//         console.log(list + "row is greater than 6")
-//         endGame() //need to exit out of function. Return doesn't do that
-//     } else if (activeCol >= 5){
-//         activeCol === 4
-//     } else {
-//     for (let i=0; i < list.length; i++){
-//         if(list[i].textContent === ''){
-//             list[i].textContent = letterChosen
-//             activeCol += 1
-//             return
-//         } else if (list[i].textContent != ''){
-//             continue
-//         }
-//     }
-// }}
+function submitKey(){
+    isRowComplete()
+    compareWords() 
+}
 
-
-// let compLetterList = computerChoice()
-
-function rowComplete(){
-    if (activeRow >= 6){
-        return
-    }
+function isRowComplete(){
     let row = l[activeRow]
-    console.log(row[1])
     for (let i=0; i < 5; i++){
-        if (row[i].textContent === ''){
-            document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
-            console.log("not shaking", activeRow)
-            return false
+    if (row[i].textContent === ''){
+        document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
+        console.log("incomplete row", activeRow)
+        return
         }
     }
 }
 
+function turnGreen(index){
+    document.querySelector(`#R${activeRow}C${index}`).style.backgroundColor = "#40916c"
+    document.querySelector(`#R${activeRow}C${index}`).classList.add('animate__animated', 'animate__flipInX')
+}
+
+function turnYellow(index){
+    document.querySelector(`#R${activeRow}C${[index]}`).style.backgroundColor = "#a68500"
+    document.querySelector(`#R${activeRow}C${index}`).classList.add('animate__animated', 'animate__flipInX')
+}
+
+function turnGray(index){
+    document.querySelector(`#R${activeRow}C${[index]}`).style.backgroundColor = "gray"
+    document.querySelector(`#R${activeRow}C${index}`).classList.add('animate__animated', 'animate__flipInX')
+}
 
 function compareWords(){
-    rowComplete()
-    if (rowComplete() === false){
-        return
-    }
-    if (activeRow >= 6){
-        return
-    }
+    isRowComplete()
     let compLetterList = ['A', 'P', 'P', 'L', 'E']
     let letterList = []
     l[activeRow].forEach((letter) => letterList.push(letter.textContent))
@@ -123,26 +110,23 @@ function compareWords(){
         console.log(letterList[i], compLetterList[i])
         if (letterList[i] === compLetterList[i]){
             console.log("match", letterList[i])
-            document.querySelector(`#R${activeRow}C${i}`).style.backgroundColor = "#40916c"
-            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
+            turnGreen(i)
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
-            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
-            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
+            turnYellow(i)
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#a68500"
-        } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) &&             document.querySelector(`#${letterList[i]}`).style.backgroundColor === "#40916c") {
-            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
-            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
+        // } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) && document.querySelector(`#${letterList[i]}`).style.backgroundColor === "#40916c") {
+        //     document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
+        //     document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
+        //     document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
         } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) === false) {
-            document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "gray"
-            document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
+            turnGray(i)
             document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
         }
     }
-    if (compLetterList.join('') === letterList.join('')){
+    if (compLetterList.join('').toLowerCase() === letterList.join('').toLowerCase()){
         console.log("you won!")
-        endGame()
+        resultDisplay.textContent = ("You Won!")
         return
     }
     activeRow += 1
