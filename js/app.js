@@ -14,7 +14,7 @@ const tileListR2 = document.querySelectorAll('.row2Tile')
 const tileListR3 = document.querySelectorAll('.row3Tile') 
 const tileListR4 = document.querySelectorAll('.row4Tile') 
 const tileListR5 = document.querySelectorAll('.row5Tile') 
-
+let resultDisplay = document.querySelector('#results')
 
 const deleteKey = document.querySelector('#delete')
 const enterKey = document.querySelector('#enter')
@@ -29,32 +29,66 @@ deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", compareWords)
 
 /*-------------------------------- Functions --------------------------------*/
+function endGame(){
+    console.log("game Over")
+    resultDisplay.textContent = ("Game over!")
+}
+
+// function checkRowCol(){
+//     if (activeRow > 5){
+//         endGame()
+//     } else if (activeCol )
+// }
 
 function addLetter(evt){
-    console.log(activeCol)
-    if (activeRow >= 6){
-    endGame() //need to exit out of function. Return doesn't do that
-    }
     let letterChosen = evt.target.textContent
-    let list = l[activeRow]
-    for (let i=0; i < list.length; i++){
-        if(list[i].textContent === ''){
-            list[i].textContent = letterChosen
-            activeCol += 1
-            return
-        } else if (list[i].textContent != ''){
-            continue
-        }
+    if (activeCol >= 5){
+        document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
+        return
+    } else if (activeCol < 5){
+        document.querySelector(`#R${activeRow}C${activeCol}`).textContent = (letterChosen)
+        activeCol += 1
     }
+    console.log("active col is :" + activeCol + "\nActive Row is: " + activeRow)
 }
 
 
 function deleteLetter(){
-    document.querySelector(`#R${activeRow}C${activeCol-1}`).textContent = ''
-    if (activeCol <= 0){
-    }   else {activeCol -= 1}
-console.log(activeCol)
+    if (activeCol > 5){
+        console.log("greater than 5")
+        return
+    } else if (activeCol === 0){
+        console.log("equal to 0")
+        return
+    } else {
+        console.log("delete letter")
+        document.querySelector(`#R${activeRow}C${activeCol-1}`).textContent = ''
+        console.log("active col is :" + activeCol + "\nActive Row is: " + activeRow)
+        activeCol -= 1
+    }
 }
+
+// function addLetter(evt){
+//     console.log("active col is :" + activeCol + "\n active Row is: " + activeRow)
+//     let letterChosen = evt.target.textContent
+//     let list = l[activeRow]
+//     if (activeRow >= 6){
+//         console.log(list + "row is greater than 6")
+//         endGame() //need to exit out of function. Return doesn't do that
+//     } else if (activeCol >= 5){
+//         activeCol === 4
+//     } else {
+//     for (let i=0; i < list.length; i++){
+//         if(list[i].textContent === ''){
+//             list[i].textContent = letterChosen
+//             activeCol += 1
+//             return
+//         } else if (list[i].textContent != ''){
+//             continue
+//         }
+//     }
+// }}
+
 
 // let compLetterList = computerChoice()
 
@@ -72,6 +106,7 @@ function rowComplete(){
         }
     }
 }
+
 
 function compareWords(){
     rowComplete()
@@ -123,8 +158,3 @@ function checkGameOver(){
     }
 }
 
-function endGame(){
-    // activeRow = null
-    // activeCol = null
-
-}
