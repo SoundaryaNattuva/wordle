@@ -5712,13 +5712,65 @@ const dictionaryWords = [
 "pupal",]
 
 const spaceWords = [
+"space",
+"orbit",
+"earth",
+"cloud",
+"atoms",
+"comet",
+"force",
+"dwarf",
+"Venus",
+"cosmo",
+"alien",
+"lunar",
+"ozone",
+"solar",
+"Pluto",
+"flare",
+"bulge",
+"crust",
+"quark",
+"cycle",
+"Orion",
+"ceres",
+"probe",
+"spore",
+"hertz",
+"pilot",
+"radar",
+"glide",
+"plane",
+"wings",
+"shaft",
+"panel",
+"cabin",
+"laser",
+"phase",
+"fluid",
+"prism",
+"alpha",
+"gamma",
+"field",
+"light",
+"waves",
+"titan",
+"radio",
+"magma",
+"world",
+"erode",
+"zonal",
+"halos",
+"metal",
+"robot",
+"stars",
 
 ]
 
 function computerChoice(){
-  let compWord = dictionaryWords[Math.floor(Math.random() * dictionaryWords.length)]
+  let compWord = spaceWords[Math.floor(Math.random() * spaceWords.length)]
   compWord = compWord.split('')
   return compWord
 }
 
-export {computerChoice}
+export {computerChoice, dictionaryWords, spaceWords};

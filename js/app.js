@@ -1,5 +1,5 @@
 /*-------------------------------- Constants --------------------------------*/
-import {computerChoice} from "./word-list.js"
+import {computerChoice, dictionaryWords, spaceWords} from "./word-list.js"
 
 /*-------------------------------- Variables --------------------------------*/
 let activeRow = 0
