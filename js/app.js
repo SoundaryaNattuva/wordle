@@ -24,6 +24,8 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 let activeRow = 0
 let activeCol = 0
 let computerWord = []
+let instructionsOpen = false
+let musicVolume = true
 
 /*------------------------ Cached Element References ------------------------*/
 const keysList = document.querySelectorAll('.key')
@@ -45,6 +47,9 @@ const instructionsBtn = document.querySelector('#instructions')
 const resetBtn = document.querySelector('#reset')
 
 let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
+
+const backgroundMusic = new Audio("../music/cinematicbg.mp3")
+const wrongGuessMusic = new Audio("../music/nextguess.wav")
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
     key.addEventListener('click',addLetter)
@@ -54,6 +59,10 @@ deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", compareWords)
 
 resetBtn.addEventListener('click',init)
+// instructionsBtn.addEventListener('click', instructionsMenu)
+
+musicBtn.addEventListener("click", playBGMusic)
+
 /*-------------------------------- Functions --------------------------------*/
 function lostGame(){
     resultDisplay.textContent = ("Game over!")
@@ -143,6 +152,7 @@ function compareWords(){
                 document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
             }
         }
+    wrongGuessMusic.play()
     console.log("activeRow before: " + activeRow)
     activeRow += 1
     activeCol = 0
@@ -185,3 +195,29 @@ function init(){
     newWord()
 
 }
+
+playBGMusic()
+
+function playBGMusic(){
+    backgroundMusic.volume = .04
+    backgroundMusic.play()
+    if (musicVolume === true){
+        musicVolume = false
+        backgroundMusic.pause()
+        return
+    } else if (musicVolume === false){
+        musicVolume = true
+        backgroundMusic.volume = .04
+    }
+}
+
+// function instructionsMenu(){
+//     console.log("instructions")
+//     if (instructionsOpen === false){
+//     document.querySelector('#popup').style.display = 'block';
+//     instructionsOpen = true
+//     } else if (instructionsOpen === true){
+//         divContainer.style.display = 'none';
+//         instructionsOpen = true
+//     }
+// }
