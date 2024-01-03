@@ -46,7 +46,7 @@ keysList.forEach((key) => {
 })
 
 deleteKey.addEventListener("click", deleteLetter)
-enterKey.addEventListener("click", submitKey)
+enterKey.addEventListener("click", compareWords)
 
 /*-------------------------------- Functions --------------------------------*/
 function lostGame(){
@@ -102,7 +102,12 @@ function compareWords(){
     let letterList = []
     let row = boardRows[activeRow]
     boardRows[activeRow].forEach((letter) => letterList.push(letter.textContent))
+    let guessWord = letterList.join('').toLowerCase()
     if(row[row.length-1].innerHTML === ''){
+        animateCSS(`#row${activeRow}`, 'shakeX')
+        return}
+    if (dictionaryWords.includes(guessWord) === false){
+        console.log("word in dictionary")
         animateCSS(`#row${activeRow}`, 'shakeX')
         return}
     if (compLetterList.join('').toLowerCase() === letterList.join('').toLowerCase()) { 
@@ -133,7 +138,6 @@ function compareWords(){
     }
 }
 
-
 function checkGameOver(){
     if (activeRow === 6){
         console.log("hello I made it!")
@@ -143,14 +147,3 @@ function checkGameOver(){
     }
 }
 
-// function checkRowCompleteness (){
-//     let row = boardRows[activeRow]
-//     if(row[row.length-1].innerHTML === ''){
-//         animateCSS(`#row${activeRow}`, 'shakeX')
-//         return
-//     }
-// }
-
-function submitKey(){
-    compareWords() 
-}
