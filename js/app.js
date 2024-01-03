@@ -23,6 +23,7 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 /*-------------------------------- Variables --------------------------------*/
 let activeRow = 0
 let activeCol = 0
+let computerWord = []
 
 /*------------------------ Cached Element References ------------------------*/
 const keysList = document.querySelectorAll('.key')
@@ -96,21 +97,28 @@ function turnGray(index){
     animateCSS(`#R${activeRow}C${index}`, 'flipInX')
 }
 
+function newWord(){
+    computerWord = computerChoice()
+    console.log(computerWord)
+}
+
+newWord()
 
 function compareWords(){
-    let compLetterList = ['A', 'P', 'P', 'L', 'E']
     let letterList = []
     let row = boardRows[activeRow]
-    boardRows[activeRow].forEach((letter) => letterList.push(letter.textContent))
+    row.forEach((letter) => letterList.push(letter.textContent.toLowerCase()))
     let guessWord = letterList.join('').toLowerCase()
+    console.log(letterList)
+    console.log(guessWord)
     if(row[row.length-1].innerHTML === ''){
         animateCSS(`#row${activeRow}`, 'shakeX')
         return}
     if (dictionaryWords.includes(guessWord) === false){
-        console.log("word in dictionary")
+        console.log("word not in dictionary")
         animateCSS(`#row${activeRow}`, 'shakeX')
         return}
-    if (compLetterList.join('').toLowerCase() === letterList.join('').toLowerCase()) { 
+    if (computerWord.join('').toLowerCase() === guessWord) { 
         resultDisplay.textContent = ("You Won!")
         for (let i=0; i < 5; i++){
             turnGreen(i)}
@@ -118,14 +126,14 @@ function compareWords(){
         return
     } else {
         for (let i=0; i < 5; i++){
-            if (letterList[i] === compLetterList[i]){
+            if (letterList[i] === computerWord[i]){
                 console.log("match", letterList[i])
                 turnGreen(i)
                 document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
-            } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
+            } else if (letterList[i] !== computerWord[i] && computerWord.includes(letterList[i])) {
                 turnYellow(i)
                 document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#a68500"
-            } else if ((letterList[i] !== compLetterList[i]) && (compLetterList.includes(letterList[i]) === false)) {
+            } else if ((letterList[i] !== computerWord[i]) && (computerWord.includes(letterList[i]) === false)) {
                 turnGray(i)
                 document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
             }
@@ -146,4 +154,3 @@ function checkGameOver(){
         return
     }
 }
-
