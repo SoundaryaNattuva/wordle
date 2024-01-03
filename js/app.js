@@ -40,6 +40,10 @@ const keyboardKeys = document.querySelectorAll('.key')
 const deleteKey = document.querySelector('#delete')
 const enterKey = document.querySelector('#enter')
 
+const musicBtn = docuemnt.querySelector('#music')
+const instructionsBtn = docuemnt.querySelector('#instructions')
+const resetBtn = docuemnt.querySelector('#reset')
+
 let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
@@ -48,6 +52,8 @@ keysList.forEach((key) => {
 
 deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", compareWords)
+
+resetBtn.addEventListener('click',init())
 
 /*-------------------------------- Functions --------------------------------*/
 function lostGame(){
@@ -153,4 +159,21 @@ function checkGameOver(){
         lostGame()
         return
     }
+}
+
+function clearBoard(){
+
+}
+
+function clearTiles(){
+    
+}
+
+function init(){
+    activeCol = 0
+    activeRow = 0
+    clearBoard()
+    clearTiles
+    newWord()
+
 }

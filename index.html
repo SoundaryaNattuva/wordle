@@ -11,13 +11,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Silkscreen&family=Yanone+Kaffeesatz:wght@500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c0a779179e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <section class="navigationBar">
-        <header class="header">
-            WORDLE
-        </header>
-    </section>
+    <header class="navigationBar">
+            <a class = "header" id="GameName">WORDLE</a>
+            <nav id="buttons">
+                <a class="fa-solid fa-music" id="music" ></a>
+                <a class="fa-solid fa-circle-info" id="instructions"></a>
+                <a class="fa-solid fa-rocket" id="reset"></a>
+            </nav>
+    </header>
     <div id="results"></div>
     <div class="GameBoard">
         <div class="BoardRow" id="row0">
