@@ -109,7 +109,7 @@ function compareWords(){
     let row = boardRows[activeRow]
     row.forEach((letter) => letterList.push(letter.textContent.toLowerCase()))
     let guessWord = letterList.join('').toLowerCase()
-    console.log(letterList)
+    console.log(computerWord.join('').toLowerCase())
     console.log(guessWord)
     if(row[row.length-1].innerHTML === ''){
         animateCSS(`#row${activeRow}`, 'shakeX')
