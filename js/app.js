@@ -40,9 +40,9 @@ const keyboardKeys = document.querySelectorAll('.key')
 const deleteKey = document.querySelector('#delete')
 const enterKey = document.querySelector('#enter')
 
-const musicBtn = docuemnt.querySelector('#music')
-const instructionsBtn = docuemnt.querySelector('#instructions')
-const resetBtn = docuemnt.querySelector('#reset')
+const musicBtn = document.querySelector('#music')
+const instructionsBtn = document.querySelector('#instructions')
+const resetBtn = document.querySelector('#reset')
 
 let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
 /*----------------------------- Event Listeners -----------------------------*/
@@ -53,8 +53,7 @@ keysList.forEach((key) => {
 deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", compareWords)
 
-resetBtn.addEventListener('click',init())
-
+resetBtn.addEventListener('click',init)
 /*-------------------------------- Functions --------------------------------*/
 function lostGame(){
     resultDisplay.textContent = ("Game over!")
@@ -161,19 +160,25 @@ function checkGameOver(){
     }
 }
 
-function clearBoard(){
+function clearKeyBoard(){
 
 }
 
 function clearTiles(){
-    
+    for (let r=0; r<6; r++){
+        for(let i=0; i<5; i++){
+            document.querySelector(`#R${r}C${i}`).textContent = ''
+            document.querySelector(`#R${r}C${i}`).style.backgroundColor = "#031d44"
+            console.log("clear tiles")
+        }
+    }
 }
 
 function init(){
     activeCol = 0
     activeRow = 0
-    clearBoard()
-    clearTiles
+    clearKeyBoard()
+    clearTiles()
     newWord()
 
 }
