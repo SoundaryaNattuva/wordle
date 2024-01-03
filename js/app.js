@@ -52,6 +52,7 @@ const backgroundMusic = new Audio("../music/cinematicbg.mp3")
 const wrongGuessMusic = new Audio("../music/nextguess.wav")
 const errorMusic = new Audio("../music/error.wav")
 const lostMusic = new Audio("../music/lostGame.wav")
+const newWordMusic = new Audio ("../music/newWordMusic.wav")
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
     key.addEventListener('click',addLetter)
@@ -115,7 +116,6 @@ function turnGray(index){
 
 function newWord(){
     computerWord = computerChoice()
-    console.log(computerWord)
 }
 
 newWord()
@@ -199,6 +199,7 @@ function init(){
     clearKeyBoard()
     clearTiles()
     newWord()
+    newWordMusic.play()
 }
 
 playBGMusic()
