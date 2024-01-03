@@ -1,6 +1,25 @@
 /*-------------------------------- Constants --------------------------------*/
 import {computerChoice, dictionaryWords, spaceWords} from "./word-list.js"
 
+//cite this
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    const node = document.querySelector(element);
+
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+  });
+
 /*-------------------------------- Variables --------------------------------*/
 let activeRow = 0
 let activeCol = 0
@@ -15,11 +34,12 @@ const tileListR3 = document.querySelectorAll('.row3Tile')
 const tileListR4 = document.querySelectorAll('.row4Tile') 
 const tileListR5 = document.querySelectorAll('.row5Tile') 
 let resultDisplay = document.querySelector('#results')
+const keyboardKeys = document.querySelectorAll('.key')
 
 const deleteKey = document.querySelector('#delete')
 const enterKey = document.querySelector('#enter')
 
-let l = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
+let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
     key.addEventListener('click',addLetter)
@@ -29,23 +49,18 @@ deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", submitKey)
 
 /*-------------------------------- Functions --------------------------------*/
-function endGame(){
-    console.log("game Over")
+function lostGame(){
     resultDisplay.textContent = ("Game over!")
-}
 
-// function checkRowCol(){
-//     if (activeRow > 5){
-//         endGame()
-//     } else if (activeCol )
-// }
+}
 
 function addLetter(evt){
     let letterChosen = evt.target.textContent
     if (activeRow === 6){
-        endGame()
+        lostGame()
     } else if (activeCol >= 5){
-        document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
+        // document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
+        animateCSS(`#row${activeRow}`, 'shakeX')
         return
     } else if (activeCol < 5){
         document.querySelector(`#R${activeRow}C${activeCol}`).textContent = (letterChosen)
@@ -54,91 +69,88 @@ function addLetter(evt){
     console.log("active col is :" + activeCol + "\nActive Row is: " + activeRow)
 }
 
-
 function deleteLetter(){
     if (activeCol > 5){
-        console.log("greater than 5")
         return
     } else if (activeCol === 0){
-        console.log("equal to 0")
         return
     } else {
-        console.log("delete letter")
         document.querySelector(`#R${activeRow}C${activeCol-1}`).textContent = ''
         console.log("active col is :" + activeCol + "\nActive Row is: " + activeRow)
         activeCol -= 1
     }
 }
 
-function submitKey(){
-    isRowComplete()
-    compareWords() 
-}
-
-function isRowComplete(){
-    let row = l[activeRow]
-    for (let i=0; i < 5; i++){
-    if (row[i].textContent === ''){
-        document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
-        console.log("incomplete row", activeRow)
-        return
-        }
-    }
-}
-
 function turnGreen(index){
     document.querySelector(`#R${activeRow}C${index}`).style.backgroundColor = "#40916c"
-    document.querySelector(`#R${activeRow}C${index}`).classList.add('animate__animated', 'animate__flipInX')
+    animateCSS(`#R${activeRow}C${index}`, 'flipInX')
 }
 
 function turnYellow(index){
     document.querySelector(`#R${activeRow}C${[index]}`).style.backgroundColor = "#a68500"
-    document.querySelector(`#R${activeRow}C${index}`).classList.add('animate__animated', 'animate__flipInX')
+    animateCSS(`#R${activeRow}C${index}`, 'flipInX')
 }
 
 function turnGray(index){
     document.querySelector(`#R${activeRow}C${[index]}`).style.backgroundColor = "gray"
-    document.querySelector(`#R${activeRow}C${index}`).classList.add('animate__animated', 'animate__flipInX')
+    animateCSS(`#R${activeRow}C${index}`, 'flipInX')
 }
+
 
 function compareWords(){
-    isRowComplete()
     let compLetterList = ['A', 'P', 'P', 'L', 'E']
     let letterList = []
-    l[activeRow].forEach((letter) => letterList.push(letter.textContent))
-    for (let i=0; i < 5; i++){
-        console.log(letterList[i], compLetterList[i])
-        if (letterList[i] === compLetterList[i]){
-            console.log("match", letterList[i])
-            turnGreen(i)
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
-        } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
-            turnYellow(i)
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#a68500"
-        // } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) && document.querySelector(`#${letterList[i]}`).style.backgroundColor === "#40916c") {
-        //     document.querySelector(`#R${activeRow}C${[i]}`).style.backgroundColor = "#a68500"
-        //     document.querySelector(`#R${activeRow}C${i}`).classList.add('animate__animated', 'animate__flipInX')
-        //     document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
-        } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i]) === false) {
-            turnGray(i)
-            document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
-        }
-    }
-    if (compLetterList.join('').toLowerCase() === letterList.join('').toLowerCase()){
-        console.log("you won!")
+    let row = boardRows[activeRow]
+    boardRows[activeRow].forEach((letter) => letterList.push(letter.textContent))
+    if(row[row.length-1].innerHTML === ''){
+        animateCSS(`#row${activeRow}`, 'shakeX')
+        return}
+    if (compLetterList.join('').toLowerCase() === letterList.join('').toLowerCase()) { 
         resultDisplay.textContent = ("You Won!")
+        for (let i=0; i < 5; i++){
+            turnGreen(i)}
+        endGame()
         return
-    }
+    } else {
+        for (let i=0; i < 5; i++){
+            if (letterList[i] === compLetterList[i]){
+                console.log("match", letterList[i])
+                turnGreen(i)
+                document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
+            } else if (letterList[i] !== compLetterList[i] && compLetterList.includes(letterList[i])) {
+                turnYellow(i)
+                document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#a68500"
+            } else if ((letterList[i] !== compLetterList[i]) && (compLetterList.includes(letterList[i]) === false)) {
+                turnGray(i)
+                document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
+            }
+        }
+    console.log("activeRow before: " + activeRow)
     activeRow += 1
     activeCol = 0
-    console.log(`row: ${activeRow}, column: ${activeCol}`)
     checkGameOver()
-}
-
-function checkGameOver(){
-    if (activeRow >=6){
-        // CSS - inset game ended
-        console.log("end")
+    console.log("activeRow after: " + activeRow)
     }
 }
 
+
+function checkGameOver(){
+    if (activeRow === 6){
+        console.log("hello I made it!")
+        animateCSS(`#row5`, 'hinge')
+        lostGame()
+        return
+    }
+}
+
+// function checkRowCompleteness (){
+//     let row = boardRows[activeRow]
+//     if(row[row.length-1].innerHTML === ''){
+//         animateCSS(`#row${activeRow}`, 'shakeX')
+//         return
+//     }
+// }
+
+function submitKey(){
+    compareWords() 
+}
