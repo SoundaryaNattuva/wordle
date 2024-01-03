@@ -25,7 +25,7 @@ let activeRow = 0
 let activeCol = 0
 let computerWord = []
 let instructionsOpen = false
-let musicVolume = true
+let musicVolume = false
 
 /*------------------------ Cached Element References ------------------------*/
 const keysList = document.querySelectorAll('.key')
@@ -50,6 +50,8 @@ let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, til
 
 const backgroundMusic = new Audio("../music/cinematicbg.mp3")
 const wrongGuessMusic = new Audio("../music/nextguess.wav")
+const errorMusic = new Audio("../music/error.wav")
+const lostMusic = new Audio("../music/lostGame.wav")
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
     key.addEventListener('click',addLetter)
@@ -127,10 +129,12 @@ function compareWords(){
     console.log(guessWord)
     if(row[row.length-1].innerHTML === ''){
         animateCSS(`#row${activeRow}`, 'shakeX')
+        errorMusic.play()
         return}
     if (dictionaryWords.includes(guessWord) === false){
         console.log("word not in dictionary")
         animateCSS(`#row${activeRow}`, 'shakeX')
+        errorMusic.play()
         return}
     if (computerWord.join('').toLowerCase() === guessWord) { 
         resultDisplay.textContent = ("You Won!")
@@ -166,6 +170,7 @@ function checkGameOver(){
         console.log("hello I made it!")
         animateCSS(`#row5`, 'hinge')
         lostGame()
+        lostMusic.play()
         return
     }
 }
@@ -190,10 +195,10 @@ function clearTiles(){
 function init(){
     activeCol = 0
     activeRow = 0
+    resultDisplay.textContent = ("")
     clearKeyBoard()
     clearTiles()
     newWord()
-
 }
 
 playBGMusic()
