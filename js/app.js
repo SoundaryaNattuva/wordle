@@ -204,6 +204,7 @@ function init(){
 playBGMusic()
 
 function playBGMusic(){
+    backgroundMusic.loop = true
     backgroundMusic.volume = .04
     backgroundMusic.play()
     if (musicVolume === true){
