@@ -161,7 +161,10 @@ function checkGameOver(){
 }
 
 function clearKeyBoard(){
-
+    for(let i=0; i<26; i++){
+        keyboardKeys[i].style.backgroundColor = "#031d44"
+    }
+    console.log(keyboardKeys)
 }
 
 function clearTiles(){
