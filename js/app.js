@@ -54,6 +54,7 @@ const wrongGuessMusic = new Audio("../music/nextguess.wav")
 const errorMusic = new Audio("../music/error.wav")
 const lostMusic = new Audio("../music/lostGame.wav")
 const newWordMusic = new Audio ("../music/newWordMusic.wav")
+const winMusic = new Audio ("../music/winMusic.wav")
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
     key.addEventListener('click',addLetter)
@@ -126,7 +127,8 @@ function compareWords(){
         errorMusic.play()
         return}
     if (listOfGuesses.includes(guessWord) === true){
-        console.log("you already guessed this word")
+        resultDisplay.textContent = ("You already guessed this word!")
+        animateCSS(resultDisplay, 'animate__flipInX')
         animateCSS(`#row${activeRow}`, 'shakeX')
         errorMusic.play()
         return}
@@ -136,9 +138,11 @@ function compareWords(){
         errorMusic.play()
         return}
     if (computerWord.join('').toLowerCase() === guessWord) { 
-        resultDisplay.textContent = ("You Won!")
+        resultDisplay.textContent = ("Nice work! Click on the rocket to play again")
+        animateCSS(resultDisplay, 'animate__jackInTheBox')
         for (let i=0; i < 5; i++){
             turnGreen(i)}
+        winMusic.play()
         endGame()
         return
     } else {
@@ -166,7 +170,6 @@ function compareWords(){
 
 function checkGameOver(){
     if (activeRow === 6){
-        console.log("hello I made it!")
         animateCSS(`#row5`, 'hinge')
         lostGame()
         lostMusic.play()
@@ -225,7 +228,6 @@ function playBGMusic(){
 // }
 
 function instructionsMenu(){
-    console.log("instructions")
     if (instructionsOpen === false){
     document.querySelector('#popup').style.display = 'block';
     instructionsOpen = true
@@ -238,6 +240,5 @@ function instructionsMenu(){
 function lostGame(){
     let compWordJoin = computerWord.join('').toUpperCase()
     resultDisplay.textContent = ("Game over! The correct word is " + compWordJoin)
-    resultDisplay.classList.add('animate__animated', 'animate__flipInX')
     animateCSS(resultDisplay, 'animate__flipInX')
 }
