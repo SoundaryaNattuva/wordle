@@ -1,7 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 import {computerChoice, dictionaryWords, spaceWords} from "./word-list.js"
 
-//cite this
+/*----------------------- Citation: Animate.CSS function ----------------------*/
 const animateCSS = (element, animation, prefix = 'animate__') =>
   // We create a Promise and return it
   new Promise((resolve, reject) => {
@@ -51,7 +51,7 @@ let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, til
 
 const backgroundMusic = new Audio("../music/cinematicbg.mp3")
 const wrongGuessMusic = new Audio("../music/nextguess.wav")
-const errorMusic = new Audio("../music/error.wav")
+const errorMusic = new Audio("../music/error4.wav")
 const lostMusic = new Audio("../music/lostGame.wav")
 const newWordMusic = new Audio ("../music/newWordMusic.wav")
 const winMusic = new Audio ("../music/winMusic.wav")
@@ -70,6 +70,7 @@ musicBtn.addEventListener("click", playBGMusic)
 
 /*-------------------------------- Functions --------------------------------*/
 function addLetter(evt){
+    // playBGMusic()
     let letterChosen = evt.target.textContent
     if (activeRow === 6){
         lostGame()
@@ -117,6 +118,7 @@ newWord()
 console.log(computerWord)
 
 function compareWords(){
+    resultDisplay.textContent = ('')
     let letterList = []
     let row = boardRows[activeRow]
     row.forEach((letter) => letterList.push(letter.textContent.toLowerCase()))
@@ -133,8 +135,8 @@ function compareWords(){
         errorMusic.play()
         return}
     if (dictionaryWords.includes(guessWord) === false){
-        console.log("word not in dictionary")
-        animateCSS(`#row${activeRow}`, 'shakeX')
+        resultDisplay.textContent = ("invalid word - try again!")
+        animateCSS(resultDisplay, 'animate__flipInX')
         errorMusic.play()
         return}
     if (computerWord.join('').toLowerCase() === guessWord) { 
@@ -160,11 +162,9 @@ function compareWords(){
         }
     wrongGuessMusic.play()
     listOfGuesses.push(guessWord)
-    console.log("activeRow before: " + activeRow)
     activeRow += 1
     activeCol = 0
     checkGameOver()
-    console.log("activeRow after: " + activeRow)
     }
 }
 
@@ -204,8 +204,6 @@ function init(){
     newWordMusic.play()
     listOfGuesses = []
 }
-
-playBGMusic()
 
 function playBGMusic(){
     backgroundMusic.loop = true
