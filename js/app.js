@@ -68,11 +68,6 @@ instructionsBtn.addEventListener('click', instructionsMenu)
 musicBtn.addEventListener("click", playBGMusic)
 
 /*-------------------------------- Functions --------------------------------*/
-function lostGame(){
-    resultDisplay.textContent = ("Game over!")
-
-}
-
 function addLetter(evt){
     let letterChosen = evt.target.textContent
     if (activeRow === 6){
@@ -94,7 +89,6 @@ function deleteLetter(){
         return
     } else {
         document.querySelector(`#R${activeRow}C${activeCol-1}`).textContent = ''
-        console.log("active col is :" + activeCol + "\nActive Row is: " + activeRow)
         activeCol -= 1
     }
 }
@@ -239,4 +233,11 @@ function instructionsMenu(){
         divContainer.style.display = 'none';
         instructionsOpen = true
     }
+}
+
+function lostGame(){
+    let compWordJoin = computerWord.join('').toUpperCase()
+    resultDisplay.textContent = ("Game over! The correct word is " + compWordJoin)
+    resultDisplay.classList.add('animate__animated', 'animate__flipInX')
+    animateCSS(resultDisplay, 'animate__flipInX')
 }
