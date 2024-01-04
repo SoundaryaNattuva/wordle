@@ -3,20 +3,20 @@ import {computerChoice, dictionaryWords, spaceWords} from "./word-list.js"
 
 /*----------------------- Citation: Animate.CSS function ----------------------*/
 const animateCSS = (element, animation, prefix = 'animate__') =>
-  new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
     const node = document.querySelector(element);
 
     node.classList.add(`${prefix}animated`, animationName);
 
     function handleAnimationEnd(event) {
-      event.stopPropagation();
-      node.classList.remove(`${prefix}animated`, animationName);
-      resolve('Animation ended');
+        event.stopPropagation();
+        node.classList.remove(`${prefix}animated`, animationName);
+        resolve('Animation ended');
     }
 
     node.addEventListener('animationend', handleAnimationEnd, {once: true});
-  });
+    });
 
 /*-------------------------------- Variables --------------------------------*/
 let activeRow = 0
