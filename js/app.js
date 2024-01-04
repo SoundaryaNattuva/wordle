@@ -3,14 +3,12 @@ import {computerChoice, dictionaryWords, spaceWords} from "./word-list.js"
 
 /*----------------------- Citation: Animate.CSS function ----------------------*/
 const animateCSS = (element, animation, prefix = 'animate__') =>
-  // We create a Promise and return it
   new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
     const node = document.querySelector(element);
 
     node.classList.add(`${prefix}animated`, animationName);
 
-    // When the animation ends, we clean the classes and resolve the Promise
     function handleAnimationEnd(event) {
       event.stopPropagation();
       node.classList.remove(`${prefix}animated`, animationName);
@@ -123,24 +121,23 @@ function compareWords(){
     let row = boardRows[activeRow]
     row.forEach((letter) => letterList.push(letter.textContent.toLowerCase()))
     let guessWord = letterList.join('').toLowerCase()
-    console.log(listOfGuesses)
     if(row[row.length-1].innerHTML === ''){
         animateCSS(`#row${activeRow}`, 'shakeX')
         errorMusic.play()
         return}
     if (listOfGuesses.includes(guessWord) === true){
-        resultDisplay.textContent = ("You already guessed this word!")
+        resultDisplay.textContent = ("Oops, you have already deciphered this galatic term 👾")
         animateCSS(resultDisplay, 'animate__flipInX')
         animateCSS(`#row${activeRow}`, 'shakeX')
         errorMusic.play()
         return}
     if (dictionaryWords.includes(guessWord) === false){
-        resultDisplay.textContent = ("invalid word - try again!")
+        resultDisplay.textContent = ("Error - recalibrate your space vocabulary and transmit again")
         animateCSS(resultDisplay, 'animate__flipInX')
         errorMusic.play()
         return}
     if (computerWord.join('').toLowerCase() === guessWord) { 
-        resultDisplay.textContent = ("Nice work! Click on the rocket to play again")
+        resultDisplay.textContent = ("Stellar performance! Click on the rocket to launch into another round")
         animateCSS(resultDisplay, 'animate__jackInTheBox')
         for (let i=0; i < 5; i++){
             turnGreen(i)}
@@ -181,7 +178,6 @@ function clearKeyBoard(){
     for(let i=0; i<26; i++){
         keyboardKeys[i].style.backgroundColor = "#031d44"
     }
-    console.log(keyboardKeys)
 }
 
 function clearTiles(){
@@ -189,7 +185,6 @@ function clearTiles(){
         for(let i=0; i<5; i++){
             document.querySelector(`#R${r}C${i}`).textContent = ''
             document.querySelector(`#R${r}C${i}`).style.backgroundColor = "#031d44"
-            console.log("clear tiles")
         }
     }
 }
@@ -237,6 +232,11 @@ function instructionsMenu(){
 
 function lostGame(){
     let compWordJoin = computerWord.join('').toUpperCase()
-    resultDisplay.textContent = ("Game over! The correct word is " + compWordJoin)
+    resultDisplay.textContent = ("Game over - the deciphered galactic term is " + compWordJoin)
     animateCSS(resultDisplay, 'animate__flipInX')
+}
+
+function endGame(){
+    activeCol = undefined
+    activeRow = undefined
 }

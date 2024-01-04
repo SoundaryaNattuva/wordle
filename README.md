@@ -6,7 +6,7 @@ I put a spin on Wordle for all those who love space, astrophysics and aliens!
 
 ## The gameplay is as follows:
 
-1. You have 6 tries to guess a 5-letter word that is space related. 
+1. You have 6 tries to guess a 5-letter word that is space-related. 
 2. For every guess, the color of the tile is revealed telling us whether the letter is in the right spot (green), wrong sport (yellow) or not part of the word at all (gray).
 
 <br>
