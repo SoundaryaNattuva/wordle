@@ -26,6 +26,7 @@ let activeCol = 0
 let computerWord = []
 let instructionsOpen = false
 let musicVolume = false
+let listOfGuesses = []
 
 /*------------------------ Cached Element References ------------------------*/
 const keysList = document.querySelectorAll('.key')
@@ -62,7 +63,7 @@ deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", compareWords)
 
 resetBtn.addEventListener('click',init)
-// instructionsBtn.addEventListener('click', instructionsMenu)
+instructionsBtn.addEventListener('click', instructionsMenu)
 
 musicBtn.addEventListener("click", playBGMusic)
 
@@ -77,14 +78,13 @@ function addLetter(evt){
     if (activeRow === 6){
         lostGame()
     } else if (activeCol >= 5){
-        // document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
+        document.querySelector(`#row${activeRow}`).classList.add('animate__animated', 'animate__shakeX')
         animateCSS(`#row${activeRow}`, 'shakeX')
         return
     } else if (activeCol < 5){
         document.querySelector(`#R${activeRow}C${activeCol}`).textContent = (letterChosen)
         activeCol += 1
     }
-    console.log("active col is :" + activeCol + "\nActive Row is: " + activeRow)
 }
 
 function deleteLetter(){
@@ -119,15 +119,20 @@ function newWord(){
 }
 
 newWord()
+console.log(computerWord)
 
 function compareWords(){
     let letterList = []
     let row = boardRows[activeRow]
     row.forEach((letter) => letterList.push(letter.textContent.toLowerCase()))
     let guessWord = letterList.join('').toLowerCase()
-    console.log(computerWord.join('').toLowerCase())
-    console.log(guessWord)
+    console.log(listOfGuesses)
     if(row[row.length-1].innerHTML === ''){
+        animateCSS(`#row${activeRow}`, 'shakeX')
+        errorMusic.play()
+        return}
+    if (listOfGuesses.includes(guessWord) === true){
+        console.log("you already guessed this word")
         animateCSS(`#row${activeRow}`, 'shakeX')
         errorMusic.play()
         return}
@@ -145,7 +150,6 @@ function compareWords(){
     } else {
         for (let i=0; i < 5; i++){
             if (letterList[i] === computerWord[i]){
-                console.log("match", letterList[i])
                 turnGreen(i)
                 document.querySelector(`#${letterList[i]}`).style.backgroundColor = "#40916c"
             } else if (letterList[i] !== computerWord[i] && computerWord.includes(letterList[i])) {
@@ -157,6 +161,7 @@ function compareWords(){
             }
         }
     wrongGuessMusic.play()
+    listOfGuesses.push(guessWord)
     console.log("activeRow before: " + activeRow)
     activeRow += 1
     activeCol = 0
@@ -200,6 +205,7 @@ function init(){
     clearTiles()
     newWord()
     newWordMusic.play()
+    listOfGuesses = []
 }
 
 playBGMusic()
@@ -214,17 +220,23 @@ function playBGMusic(){
         return
     } else if (musicVolume === false){
         musicVolume = true
+        backgroundMusic.play()
         backgroundMusic.volume = .04
+        return
     }
 }
 
-// function instructionsMenu(){
-//     console.log("instructions")
-//     if (instructionsOpen === false){
-//     document.querySelector('#popup').style.display = 'block';
-//     instructionsOpen = true
-//     } else if (instructionsOpen === true){
-//         divContainer.style.display = 'none';
-//         instructionsOpen = true
-//     }
+// function winDisplay(){
+//     animateCSS( , 'backOutUp')
 // }
+
+function instructionsMenu(){
+    console.log("instructions")
+    if (instructionsOpen === false){
+    document.querySelector('#popup').style.display = 'block';
+    instructionsOpen = true
+    } else if (instructionsOpen === true){
+        divContainer.style.display = 'none';
+        instructionsOpen = true
+    }
+}

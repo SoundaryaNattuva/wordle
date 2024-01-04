@@ -111,12 +111,11 @@ body {
 }
 
 .BoardRow {
-    /* border: solid 1px black; */
+    /* border: solid 1px white; */
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    animate__shakeX
 }
 
 .tile {
@@ -246,7 +245,7 @@ body {
 }
 
 .KBR {
-    /* border: solid 1px white; */
+    border: solid 1px white;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
