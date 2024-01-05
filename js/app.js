@@ -109,7 +109,6 @@ function newWord(){
 }
 
 newWord()
-console.log(computerWord)
 
 function compareWords(){
     if(activeCol === undefined){
