@@ -125,7 +125,7 @@ function compareWords(){
         errorMusic.play()
         return}
     if (listOfGuesses.includes(guessWord) === true){
-        resultDisplay.innerHTML = ("This word's been beamed up!<br> Pick another 5-letter galaxy")
+        resultDisplay.innerHTML = ("This word's been beamed up!<br> Pick another 5-letter word")
         animateCSS(`#row${activeRow}`, 'shakeX')
         errorMusic.play()
         return}
