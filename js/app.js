@@ -1,7 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 import {computerChoice, dictionaryWords} from "./word-list.js"
 
-/*----------------------- Citation: Animate.CSS function ----------------------*/
+/*----------------------- Citation: https://animate.style/ - under the "Usage with Javascript" section  ----------------------*/
 const animateCSS = (element, animation, prefix = 'animate__') =>
     
     new Promise((resolve, reject) => {
@@ -23,7 +23,6 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 let activeRow = 0
 let activeCol = 0
 let computerWord = []
-let instructionsOpen = false
 let musicVolume = false
 let listOfGuesses = []
 

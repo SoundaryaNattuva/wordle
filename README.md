@@ -12,10 +12,16 @@ I put a spin on Wordle for all those who love space, astrophysics and aliens!
 2. For every guess, the color of the tile is revealed telling you whether the letter is in the right spot (green), wrong sport (yellow) or not part of the word at all (gray).
 3. If you want to dive into another word sometime through the game, or when you are finished, you can click the rocket icon 🚀 on the top right to launch a new game. 
 
+#### Extras: 
+- If you enjoy music while playing, click on the 🎵 icon
+- If you want words of encouragement from an alien, click on the 👽 icon
+
 <br>
 
 # [Click to launch into a galaxy of word guessing! 🌟](https://wordle-arya.netlify.app)
 
+
+## Icebox items 🧊
 - [ ] Create a difficult mode encompassing a timer.
 - [ ] Have a no-gravity mode where the keys on the board float around.
 - [ ] Be mobile responsive
