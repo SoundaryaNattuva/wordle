@@ -24,6 +24,7 @@ I put a spin on Wordle for all those who love space, astrophysics and aliens!
 - [Mozilla Developer](https://developer.mozilla.org/en-US/)
 - [Coolors](https://coolors.co/palettes/trending)
 - [Canva - Favicon](https://www.canva.com/)
+- [Alien encourgement audio](https://www.youtube.com/watch?v=k9zTr2MAFRg)
 
 ## Attributions 🛟
 - [FreeSound](https://freesound.org/)
