@@ -66,7 +66,6 @@ AlienBtn.addEventListener("click", playAlien)
 
 /*-------------------------------- Functions --------------------------------*/
 function addLetter(evt){
-    // playBGMusic()
     let letterChosen = evt.target.textContent
     if (activeRow === 6){
         lostGame()

@@ -206,7 +206,6 @@ body {
 }
 
 .KeyBoard {
-    /* border: solid 1px white; */
     padding: 20px 20px;
     max-width: 650px;
     height: 200px;
@@ -218,7 +217,6 @@ body {
 }
 
 .KBR {
-    /* border: solid 1px white; */
     display: flex;
     align-items: center;
     justify-content: space-evenly;

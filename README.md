@@ -4,6 +4,8 @@ Wordle is a popular online game established in 2022, attracting users around the
 
 I put a spin on Wordle for all those who love space, astrophysics and aliens!
 
+![Image](/css/gamescreen.png)
+
 ## The game-play is as follows 👾
 
 1. You have 6 tries to guess a 5-letter word that is space-related. 
