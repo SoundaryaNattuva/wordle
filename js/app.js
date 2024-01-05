@@ -1,8 +1,9 @@
 /*-------------------------------- Constants --------------------------------*/
-import {computerChoice, dictionaryWords, spaceWords} from "./word-list.js"
+import {computerChoice, dictionaryWords} from "./word-list.js"
 
 /*----------------------- Citation: Animate.CSS function ----------------------*/
 const animateCSS = (element, animation, prefix = 'animate__') =>
+    
     new Promise((resolve, reject) => {
     const animationName = `${prefix}${animation}`;
     const node = document.querySelector(element);
@@ -28,7 +29,6 @@ let listOfGuesses = []
 
 /*------------------------ Cached Element References ------------------------*/
 const keysList = document.querySelectorAll('.key')
-const tileList = document.querySelectorAll('.tile')
 const tileListR0 = document.querySelectorAll('.row0Tile')
 const tileListR1 = document.querySelectorAll('.row1Tile') 
 const tileListR2 = document.querySelectorAll('.row2Tile') 
@@ -42,7 +42,7 @@ const deleteKey = document.querySelector('#delete')
 const enterKey = document.querySelector('#enter')
 
 const musicBtn = document.querySelector('#music')
-const instructionsBtn = document.querySelector('#instructions')
+const AlienBtn = document.querySelector('#alien')
 const resetBtn = document.querySelector('#reset')
 
 let boardRows = [tileListR0, tileListR1, tileListR2, tileListR3, tileListR4, tileListR5]
@@ -53,18 +53,16 @@ const errorMusic = new Audio("../music/error4.wav")
 const lostMusic = new Audio("../music/lostGame.wav")
 const newWordMusic = new Audio ("../music/newWordMusic.wav")
 const winMusic = new Audio ("../music/winMusic.wav")
+const motivationAudio = new Audio("../music/AlienEncouragement.wav")
 /*----------------------------- Event Listeners -----------------------------*/
 keysList.forEach((key) => {
     key.addEventListener('click',addLetter)
 })
-
 deleteKey.addEventListener("click", deleteLetter)
 enterKey.addEventListener("click", compareWords)
-
 resetBtn.addEventListener('click',init)
-instructionsBtn.addEventListener('click', instructionsMenu)
-
 musicBtn.addEventListener("click", playBGMusic)
+AlienBtn.addEventListener("click", playAlien)
 
 /*-------------------------------- Functions --------------------------------*/
 function addLetter(evt){
@@ -116,6 +114,8 @@ newWord()
 console.log(computerWord)
 
 function compareWords(){
+    if(activeCol === undefined){
+        return}
     resultDisplay.textContent = ('')
     let letterList = []
     let row = boardRows[activeRow]
@@ -123,22 +123,20 @@ function compareWords(){
     let guessWord = letterList.join('').toLowerCase()
     if(row[row.length-1].innerHTML === ''){
         animateCSS(`#row${activeRow}`, 'shakeX')
+        resultDisplay.textContent = ("Your cosmic word must be 5 letters long 🌛")
         errorMusic.play()
         return}
     if (listOfGuesses.includes(guessWord) === true){
-        resultDisplay.textContent = ("Oops, you have already deciphered this galatic term 👾")
-        animateCSS(resultDisplay, 'animate__flipInX')
+        resultDisplay.innerHTML = ("This word's been beamed up!<br> Pick another 5-letter galaxy")
         animateCSS(`#row${activeRow}`, 'shakeX')
         errorMusic.play()
         return}
     if (dictionaryWords.includes(guessWord) === false){
         resultDisplay.textContent = ("Error - recalibrate your space vocabulary and transmit again")
-        animateCSS(resultDisplay, 'animate__flipInX')
         errorMusic.play()
         return}
     if (computerWord.join('').toLowerCase() === guessWord) { 
-        resultDisplay.textContent = ("Stellar performance! Click on the rocket to launch into another round")
-        animateCSS(resultDisplay, 'animate__jackInTheBox')
+        resultDisplay.innerHTML = ("Stellar performance!<br>Click the 🚀 to launch into another round!")
         for (let i=0; i < 5; i++){
             turnGreen(i)}
         winMusic.play()
@@ -156,6 +154,7 @@ function compareWords(){
                 turnGray(i)
                 document.querySelector(`#${letterList[i]}`).style.backgroundColor = "gray"
             }
+        resultDisplay.textContent = ("Almost there, galaxy traveler! 👩🏽‍🚀 Shift your course with another 5-letter word.")
         }
     wrongGuessMusic.play()
     listOfGuesses.push(guessWord)
@@ -216,27 +215,17 @@ function playBGMusic(){
     }
 }
 
-// function winDisplay(){
-//     animateCSS( , 'backOutUp')
-// }
-
-function instructionsMenu(){
-    if (instructionsOpen === false){
-    document.querySelector('#popup').style.display = 'block';
-    instructionsOpen = true
-    } else if (instructionsOpen === true){
-        divContainer.style.display = 'none';
-        instructionsOpen = true
-    }
+function playAlien(){
+    motivationAudio.volume = .04
+    motivationAudio.play()
 }
 
 function lostGame(){
     let compWordJoin = computerWord.join('').toUpperCase()
-    resultDisplay.textContent = ("Game over - the deciphered galactic term is " + compWordJoin)
-    animateCSS(resultDisplay, 'animate__flipInX')
+    resultDisplay.innerHTML = ("Game over 🤖 <br>The deciphered galactic term is " + compWordJoin + "<br>Click the rocket to launch a new game")
 }
 
 function endGame(){
-    activeCol = undefined
-    activeRow = undefined
+    activeCol = null
+    activeRow = null
 }
