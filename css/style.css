@@ -22,7 +22,7 @@ body {
 
 .navigationBar {
     width: 100%;
-    max-width: 640px;
+    /* max-width: 640px; */
     border: solid   1px white;
     margin-top: 0px;
     display: flex;
