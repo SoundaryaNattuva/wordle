@@ -8,9 +8,9 @@ body {
     background-color: #04395e;
 }
 
-.container{
+/* .container{ */
     /* padding: 0 1em; */
-    border: solid   1px yellow;
+    /* border: solid   1px yellow;
     width: 100%;
     max-width: 680px;
     display: flex;
@@ -18,11 +18,11 @@ body {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-}
+} */
 
 .navigationBar {
     width: 100%;
-    /* max-width: 640px; */
+    max-width: 640px;
     border: solid   1px white;
     margin-top: 0px;
     display: flex;
@@ -248,7 +248,7 @@ body {
     border: solid 1px white;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
     .KeyBoard {
         max-width: 100%; /* Adjust width to be responsive */
         padding: 10px 10px; /* Optional: adjust padding for smaller screens */
@@ -258,9 +258,9 @@ body {
     .KBR {
         max-width: 100%; /* Adjust width to be responsive */
         /* Other adjustments as needed */
-    }
-    
+    }   
 }
+
 .key {
     font-family: 'Poiret One', sans-serif;
     font-family: 'Silkscreen', sans-serif;
