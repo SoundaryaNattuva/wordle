@@ -10,15 +10,25 @@ body {
 
 .container{
     padding: 0 1em;
+    border: solid   1px white;
+    max-height: 900px;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navigationBar {
     width: 100%;
+    max-width: 640px;
+    border: solid   1px white;
     margin-top: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 0;
 }
@@ -31,9 +41,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 30%;
     color: white;
-    padding-right: 50px;
+    padding: 20px;
+    border: solid   1px white;
 }
 
 .music{
@@ -49,11 +59,12 @@ body {
     font-family: 'Silkscreen', sans-serif;
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 88px;
-    padding-left:15%;
-    padding-top: 10px;
-    width: 60%;
+    padding-left: 20px;
+    /* padding-top: 10px; */
+    /* width: 60%; */
     text-align: start;
     color: white;
+    border: solid   1px white;
 }
 
 #results{
@@ -69,12 +80,14 @@ body {
     text-align: center;
     width: 50%;
     height: 80px;
-    margin-top:100px;
+    margin-top: 20px;
     margin-bottom:10px;
     background: rgb(03, 28, 68, .8);
+    border: solid 1px white;
 }
 
 .GameBoard {
+    border: solid 1px white;
     padding: 5px;
     max-width: 300px;
     height: 400px;
@@ -207,13 +220,14 @@ body {
 
 .KeyBoard {
     padding: 20px 20px;
-    max-width: 650px;
+    max-width: 640px;
     height: 200px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     display: flex;
     margin: 10px;
+    border: solid 1px rgb(221, 129, 129);
 }
 
 .KBR {
@@ -223,6 +237,7 @@ body {
     height: 60px;
     width: 580px;
     margin: 8px;
+    border: solid 1px white;
 }
 
 .key {
