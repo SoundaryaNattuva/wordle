@@ -42,7 +42,7 @@ body {
     align-items: center;
     justify-content: space-evenly;
     color: white;
-    padding: 20px;
+    padding: 10px;
     border: solid   1px white;
 }
 
@@ -101,7 +101,8 @@ body {
     display: flex;
     flex-direction: column;
     align-content: center;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .BoardRow {
